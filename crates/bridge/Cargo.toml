@@ -1,0 +1,15 @@
+[package]
+name = "bridge"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow.workspace = true
+thiserror.workspace = true
+tokio = { workspace = true, features = ["full", "net"] }
+common = { path = "../common" }
+
+[target.'cfg(windows)'.dependencies]
+tokio-named-pipes = "0.1.0"
+windows-sys = { version = "0.59.0", features = ["Win32_Foundation", "Win32_System_Pipes", "Win32_Networking_WinSock"] }
+socket2 = { version = "0.5.8", features = ["all"] }
