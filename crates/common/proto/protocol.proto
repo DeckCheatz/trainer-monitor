@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package trainer;
+
+service MonitorService {
+    rpc GetTrainerState(TrainerRequest) returns (TrainerState);
+    rpc StreamEvents(TrainerRequest) returns (stream Event);
+}
+
+message TrainerRequest {
+    string game_id = 1;
+}
+
+message TrainerState {
+    string status = 1;
+    bool attached = 2;
+    map<string, string> attributes = 3;
+}
+
+message Event {
+    string event_type = 1;
+    string payload = 2;
+}
